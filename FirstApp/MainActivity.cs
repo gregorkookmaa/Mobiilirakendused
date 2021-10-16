@@ -10,6 +10,10 @@ namespace FirstApp
     public class MainActivity : AppCompatActivity
     {
         TextView firstText;
+        TextView answerTextView;
+        EditText firstNumberEditText;
+        EditText secondNumberEditText;
+        Button addButton;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -19,12 +23,27 @@ namespace FirstApp
 
             firstText = FindViewById<TextView>(Resource.Id.textView1);
             var firstButton = FindViewById < Button>(Resource.Id.button1);
+             firstNumberEditText = FindViewById<EditText>(Resource.Id.editText1);
+             secondNumberEditText = FindViewById<EditText>(Resource.Id.editText2);
+             addButton = FindViewById<Button>(Resource.Id.addButton);
+             answerTextView = FindViewById<TextView>(Resource.Id.answertextView);
+
+
 
             firstText.Text = " Minu esimene tekst";
             firstButton.Text = "Vajuta mind";
             firstButton.Click += FirstButton_Click;
 
+            addButton.Click += addButton_Click;
+        }
 
+
+        private void addButton_Click(object sender, System.EventArgs e)
+        {
+            var firstNumber = double.Parse(firstNumberEditText.Text);
+            var secondNumber = double.Parse(secondNumberEditText.Text);
+            var answer = firstNumber + secondNumber;
+            answerTextView.Text = answer.ToString();
         }
 
         private void FirstButton_Click(object sender, System.EventArgs e)
